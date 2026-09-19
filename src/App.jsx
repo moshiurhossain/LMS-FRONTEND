@@ -6,6 +6,8 @@ import Layoutone from './layouts/Layoutone'
 import Authlayout from './layouts/Authlayout'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Adminlayout from './layouts/Adminlayout'
+import Dashboard from './pages/Dashboard'
 function App() {
 
 
@@ -14,24 +16,31 @@ function App() {
     ////MasterLayout////
     <Route>
 
-      ////layoutone////
+      {/* ////layoutone//// */}
       <Route path ='/' element={<Layoutone/>}>
         <Route index element={<Home/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Route>
-      ////layoutone////
+      {/* ////layoutone//// */}
 
-      ////Authlayout////
+      {/* ////Authlayout//// */}
       <Route path='/auth' element={<Authlayout/>}>
+        <Route index element={<Signup/>} />
         <Route path='/auth/login' element={<Login/>} />
-        <Route path='/auth/signup' element={<Signup/>} />
+        <Route path='*' element={<Notfound/>}/>
       </Route>
-      ////Authlayout////
+      {/* ////Authlayout//// */}
+
+      {/* ////Adminlayout */}
+      <Route path='/admin' element={<Adminlayout/>}>
+       <Route index element={<Dashboard/>}/>
+       <Route path='*' element={<Notfound/>}/>
+      </Route>
+      {/* ////Adminlayout */}
 
 
-      
     </Route>
-     ////MasterLayout////
+     //MasterLayout////
   ))
   // React Router ends //
 
