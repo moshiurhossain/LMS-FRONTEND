@@ -26,7 +26,7 @@ function App() {
       {/* ////Authlayout//// */}
       <Route path='/auth' element={<Authlayout/>}>
         <Route index element={<Signup/>} />
-        <Route path='/auth/loginpage' element={<Login/>} />
+        <Route path='/auth/login' element={<Login/>} />
         <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Authlayout//// */}

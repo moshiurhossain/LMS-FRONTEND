@@ -1,11 +1,35 @@
 
+
+import{ useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
+import { useLoginMutation } from "../service/api";
 
 // ////////////////////////////////// //
 
-const Login = () => {
 
+const Login = () => {
+  const [login] =useLoginMutation()
+
+  const [formData,setFormData] =useState({
+    email : "",
+    password : "",
+  })
+
+  const handleLogin = async (e) => {
+  e.preventDefault();
+  try{
+    console.log(formData.email)
+    console.log(formData.password)
+   const res = await login(formData).unwrap()
+   console.log(res)
+   console.log(res.data.role)
+  } catch (error){
+    console.log('this is error',error)
+  }
+  
+};
+  
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
@@ -39,6 +63,7 @@ const Login = () => {
                 type="email"
                 placeholder="Enter your email"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                onChange={(e)=>setFormData((prev)=>({...prev,email:e.target.value}))}
               />
             </div>
           </div>
@@ -62,6 +87,7 @@ const Login = () => {
                 type="password"
                 placeholder="Enter your password"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                onChange={(e)=>setFormData((prev)=>({...prev,password:e.target.value}))}
               />
             </div>
           </div>
@@ -79,8 +105,11 @@ const Login = () => {
           </div>
 
           {/* Login Button */}
-          <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition">
+          <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
+          onClick={handleLogin}
+          >
             Sign In
+            
           </button>
         </div>
 
