@@ -4,11 +4,13 @@ import{ useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
 import { useLoginMutation } from "../service/api";
+import { useNavigate } from "react-router";
 
 // ////////////////////////////////// //
 
 
 const Login = () => {
+  const navigate = useNavigate()
   const [login] =useLoginMutation()
 
   const [formData,setFormData] =useState({
@@ -23,7 +25,13 @@ const Login = () => {
     console.log(formData.password)
    const res = await login(formData).unwrap()
    console.log(res)
-   console.log(res.data.role)
+   const userRole = res.data.role
+   console.log(userRole)
+   if(userRole == 'admin'){
+   navigate('/admin')
+   }else{
+    navigate('/')
+   }
   } catch (error){
     console.log('this is error',error)
   }
