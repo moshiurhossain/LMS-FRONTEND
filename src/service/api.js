@@ -8,7 +8,7 @@ export const lmsapi = createApi({
             // getLoginApi : builder.query({
             //     query : ()=> 'auth/login'
             // }),
-        // dummy api    
+        /////Login/////   
             login : builder.mutation({
                  query :(data)=>({
                     url:"auth/login",
@@ -16,6 +16,16 @@ export const lmsapi = createApi({
                     body:data,
                  })
             }),
+            // xxxxxxxx //
+            /////Signup/////
+            signupApi : builder.mutation({
+                 query:(data)=>({
+                    url:'',
+                    method: "POST",
+                    body:data,
+                 })
+            }),
+            // xxxxxxxx //
 
     }),
 
@@ -24,4 +34,5 @@ export const lmsapi = createApi({
 export const {
     // useGetLoginApiQuery,
        useLoginMutation,
+       useSignupApiMutation,
                } = lmsapi
