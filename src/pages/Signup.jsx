@@ -2,8 +2,31 @@
 
 import { FaUser, FaPhone } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
+import { useSignupApiMutation } from "../service/api";
+import { useState } from "react";
 
 const Signup = () => {
+  // signup api mutation
+  const [signupApi] = useSignupApiMutation()
+  // get data from body
+  const [formData,setFormData] = useState(
+    {
+    name :"",
+    email:"",
+    password:"",
+    phone:"",
+    }
+  )
+  const handleSignup = async (e)=>{
+   e.preventDefault();
+   try{
+   const res = await signupApi(formData).unwrap()
+   console.log(res)
+   }catch(err){
+    console.log( 'ERROR =>',err)
+   }
+ 
+  }
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
@@ -39,6 +62,7 @@ const Signup = () => {
                 type="text"
                 placeholder="Enter your full name"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                onChange={(e)=>setFormData((prev)=>({...prev,name:e.target.value}))}
               />
             </div>
           </div>
@@ -56,6 +80,7 @@ const Signup = () => {
                 type="email"
                 placeholder="Enter your email"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                onChange={(e)=>setFormData((prev)=>({...prev,email:e.target.value}))}
               />
             </div>
           </div>
@@ -73,7 +98,8 @@ const Signup = () => {
                 type="tel"
                 placeholder="Enter your phone number"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-              />
+                onChange={(e)=>setFormData((prev)=>({...prev,phone:e.target.value}))}
+             />
             </div>
           </div>
 
@@ -90,49 +116,22 @@ const Signup = () => {
                 type="password"
                 placeholder="Create a password"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-              />
+                onChange={(e)=>setFormData((prev)=>({...prev,password:e.target.value}))}
+             />
             </div>
           </div>
 
           {/* Confirm Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Confirm Password
-            </label>
-
-            <div className="relative">
-              <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-
-              <input
-                type="password"
-                placeholder="Confirm your password"
-                className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-              />
-            </div>
-          </div>
+   
 
           {/* Terms */}
-          <div className="flex items-start gap-2">
-            <input
-              type="checkbox"
-              className="w-4 h-4 mt-1 accent-indigo-600"
-            />
 
-            <p className="text-sm text-gray-600">
-              I agree to the{" "}
-              <button
-                type="button"
-                className="text-indigo-600 font-medium hover:text-indigo-700"
-              >
-                Terms & Conditions
-              </button>
-            </p>
-          </div>
 
           {/* Signup Button */}
           <button
             type="button"
             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
+           onClick={handleSignup}
           >
             Create Account
           </button>

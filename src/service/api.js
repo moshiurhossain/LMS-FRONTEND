@@ -20,7 +20,7 @@ export const lmsapi = createApi({
             /////Signup/////
             signupApi : builder.mutation({
                  query:(data)=>({
-                    url:'',
+                    url:'auth/signup',
                     method: "POST",
                     body:data,
                  })
