@@ -2,8 +2,9 @@
 
 import { FaUser, FaPhone } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
-import { useSignupApiMutation } from "../service/api";
+import { useSignupApiMutation } from "../services/api";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const Signup = () => {
   // signup api mutation
@@ -130,7 +131,7 @@ const Signup = () => {
           {/* Signup Button */}
           <button
             type="button"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
+            className="cursor-pointer w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
            onClick={handleSignup}
           >
             Create Account
@@ -154,12 +155,13 @@ const Signup = () => {
         {/* Login */}
         <p className="text-center text-sm text-gray-500 mt-7">
           Already have an account?{" "}
-          <button
+          <Link
+            to='/auth/login'
             type="button"
             className="text-indigo-600 font-semibold hover:text-indigo-700"
           >
             Sign in
-          </button>
+          </Link>
         </p>
 
       </div>

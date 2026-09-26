@@ -3,15 +3,16 @@
 import{ useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
-import { useLoginMutation } from "../service/api";
-import { useNavigate } from "react-router";
+
+import { Link, useNavigate } from "react-router";
+import { useLoginApiMutation } from "../services/api";
 
 // ////////////////////////////////// //
 
 
 const Login = () => {
   const navigate = useNavigate()
-  const [login] =useLoginMutation()
+  const [loginApi] = useLoginApiMutation()
 
   const [formData,setFormData] =useState({
     email : "",
@@ -21,16 +22,28 @@ const Login = () => {
   const handleLogin = async (e) => {
   e.preventDefault();
   try{
-    console.log(formData.email)
-    console.log(formData.password)
-   const res = await login(formData).unwrap()
-   console.log(res)
+   
+   const res = await loginApi(formData).unwrap()
+
+  //  console.log(res.data.accesstoken)
+  const userData = res.data
    const userRole = res.data.role
+   
    console.log(userRole)
    if(userRole == 'admin'){
-   navigate('/admin')
+   navigate('/admin',{
+     state :{
+      user:userData,
+      role:userRole,
+     }
+   })
    }else{
-    navigate('/')
+    navigate('/',{
+      state:{
+      user:userData,
+      role:userRole,
+      }
+    })
    }
   } catch (error){
     console.log('this is error',error)
@@ -148,9 +161,9 @@ const Login = () => {
         {/* Sign Up */}
         <p className="text-center text-sm text-gray-500 mt-7">
           Don't have an account?{" "}
-          <button className="text-indigo-600 font-semibold hover:text-indigo-700">
+          <Link to='/auth' className="text-indigo-600 font-semibold hover:text-indigo-700">
             Sign up
-          </button>
+          </Link>
         </p>
       </div>
     </div>
