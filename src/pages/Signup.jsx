@@ -4,9 +4,11 @@ import { FaUser, FaPhone } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
 import { useSignupApiMutation } from "../services/api";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Signup = () => {
+  // use navigate
+  const navigate = useNavigate()
   // signup api mutation
   const [signupApi] = useSignupApiMutation()
   // get data from body
@@ -23,6 +25,13 @@ const Signup = () => {
    try{
    const res = await signupApi(formData).unwrap()
    console.log(res)
+   const useremailaddress = res.data.email
+   console.log(useremailaddress)
+   navigate('/auth/verifyotp',{state:{
+    name:res.data.name,
+    email: useremailaddress, 
+    role:res.data.role
+  }})
    }catch(err){
     console.log( 'ERROR =>',err)
    }

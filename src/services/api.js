@@ -5,6 +5,8 @@ export const lmsAuthapi = createApi({
     baseQuery : fetchBaseQuery({ baseUrl : 'http://localhost:8080/api/v1/auth', credentials: 'include'}),
    tagTypes:["User",],
     endpoints :(builder)=>({
+             // xxxxxxxx //
+            /////get user/////
             getUserApi :builder.query({
                  query:()=>({
                    url : '/getuser',
@@ -33,16 +35,45 @@ export const lmsAuthapi = createApi({
                  })
             }),
             // xxxxxxxx //
-            otpVerificationApi :builder.mutation({
+            otpVerificationApi:builder.mutation({
                query:(data)=>({
                      url:'/verifyotp',
                     method: "POST",
                     body:data,
                    
                })
-            })
+            }),
+            // xxxxxxxx //
+            /////Resent otp/////
+            resentOtpApi: builder.mutation({
+                query:(data)=>({
+                    url:'/resendotp',
+                    method: "POST",
+                    body:data,
+                   
+               })
+            }),
+            // xxxxxxxx //
+            /////forgot password/////
+            forgotPasswordApi: builder.mutation({
+                    query:(data)=>({
+                    url:'/forgotpassword',
+                    method: "POST",
+                    body:data,
+                    })
+            }),
+            // xxxxxxxx //
+            /////forgot password/////
+            resetPasswordApi: builder.mutation({
+                    query:(data)=>({
+                    url:'/resetpassword',
+                    method: "POST",
+                    body:data,
+                    })
+            }),
 
-    }),
+
+    })
 
 })
 
@@ -50,5 +81,8 @@ export const {
        useOtpVerificationApiMutation,
        useLoginApiMutation,
        useSignupApiMutation,
+       useResentOtpApiMutation,
        useGetUserApiQuery,
+       useForgotPasswordApiMutation,
+       useResetPasswordApiMutation,
                } = lmsAuthapi

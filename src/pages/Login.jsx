@@ -19,6 +19,8 @@ const Login = () => {
     password : "",
   })
 
+
+  
   const handleLogin = async (e) => {
   e.preventDefault();
   try{
@@ -96,9 +98,9 @@ const Login = () => {
                 Password
               </label>
 
-              <button className="text-sm text-indigo-600 hover:text-indigo-700">
+              <Link className="text-sm text-indigo-600 hover:text-indigo-700">
                 Forgot password?
-              </button>
+              </Link>
             </div>
 
             <div className="relative">

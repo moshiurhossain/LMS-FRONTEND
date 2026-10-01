@@ -8,6 +8,8 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Adminlayout from './layouts/Adminlayout'
 import Dashboard from './pages/Dashboard'
+import VerificationOTP from './pages/VerificationOTP'
+import ForgotPassword from './pages/ForgotPassword'
 function App() {
 
 
@@ -27,6 +29,8 @@ function App() {
       <Route path='/auth' element={<Authlayout/>}>
         <Route index element={<Signup/>} />
         <Route path='/auth/login' element={<Login/>} />
+        <Route path='/auth/verifyotp' element ={<VerificationOTP/>}/>
+        <Route path='/auth/forgotpassword' element ={<ForgotPassword/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Authlayout//// */}
