@@ -1,10 +1,30 @@
 
 
+import { useState } from "react";
 import { FiMail, FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router";
+import { useForgotPasswordApiMutation } from "../services/api";
 
 
 const ForgotPassword = () => {
+// get forgot password api
+const [forgotPasswordApi] = useForgotPasswordApiMutation() 
+//   React state for form data
+  const [formData, setFormData] = useState({
+    email: "",
+  });
+//   Function to handle forgot password form submission
+const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await forgotPasswordApi(formData).unwrap();
+        console.log("Forgot password response:", response);
+    }catch (error) {
+        console.error("Error occurred while resetting password:", error);
+    }
+}
+
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
@@ -28,7 +48,7 @@ const ForgotPassword = () => {
           </div>
 
           {/* Form */}
-          <form className="space-y-5">
+          <div className="space-y-5">
             
             {/* Email */}
             <div>
@@ -43,6 +63,9 @@ const ForgotPassword = () => {
                 <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
 
                 <input
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   id="email"
                   type="email"
                   placeholder="Enter your email"
@@ -54,11 +77,12 @@ const ForgotPassword = () => {
             {/* Submit Button */}
             <button
               type="button"
+              onClick={handleForgotPassword}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200"
             >
               Send Reset Link
             </button>
-          </form>
+          </div>
 
           {/* Back to Login */}
           <div className="mt-6 text-center">

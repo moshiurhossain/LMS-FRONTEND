@@ -10,6 +10,7 @@ import Adminlayout from './layouts/Adminlayout'
 import Dashboard from './pages/Dashboard'
 import VerificationOTP from './pages/VerificationOTP'
 import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 function App() {
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/auth/login' element={<Login/>} />
         <Route path='/auth/verifyotp' element ={<VerificationOTP/>}/>
         <Route path='/auth/forgotpassword' element ={<ForgotPassword/>}/>
+        <Route path='/auth/resetpassword' element ={<ResetPassword/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Authlayout//// */}
