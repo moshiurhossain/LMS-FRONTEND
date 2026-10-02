@@ -1,5 +1,7 @@
 // import { useLocation } from "react-router"
+
 import { useGetUserApiQuery } from "../services/api"
+import UserInfo from "../components/UserInfo"
 
 
 const Dashboard = () => {
@@ -7,25 +9,17 @@ const Dashboard = () => {
   // const user = location.state?.user
   // console.log(user)
   const {data} =useGetUserApiQuery()
+  const username = data?.data?.name
+  const useremail = data?.data?.email
+  const userrole = data?.data?.role
   return (
-          <div>
-            <h1>Dashboard</h1>
-
-            {/* <p>Name: {user?.name}</p>
-            <p>Email: {user?.email}</p>
-            <p>Role: {user?.role}</p> */}
-              <h2>
-                Welcome, {data?.data?.name}
-            </h2>
-
-            <p>
-                Email: {data?.data?.email}
-            </p>
-
-            <p>
-                Role: {data?.data?.role}
-            </p>
-        </div>
+    <div className="flex">
+     <UserInfo username={username} useremail={useremail} userrole={userrole}/>
+     
+         
+        
+    </div>
+    
   )
 }
 

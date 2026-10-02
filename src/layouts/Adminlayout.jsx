@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router"
 import Header from "../pages/Header"
 import { useGetUserApiQuery } from "../services/api"
+import AdminNavbar from "../components/AdminNavbar"
 
 
 const Adminlayout = () => {
@@ -29,7 +30,10 @@ const Adminlayout = () => {
   return (
     <div>
         <Header/>
-        <Outlet/>
+        <div className="flex">
+           <AdminNavbar/>
+           <Outlet/>
+        </div>
     </div>
   )
 }
