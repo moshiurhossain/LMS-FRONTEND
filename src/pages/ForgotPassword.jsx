@@ -87,7 +87,7 @@ const handleForgotPassword = async (e) => {
           {/* Back to Login */}
           <div className="mt-6 text-center">
             <Link
-              to="/auth/login"
+              to="/login"
               className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition"
             >
               <FiArrowLeft />
@@ -100,7 +100,7 @@ const handleForgotPassword = async (e) => {
         <p className="text-center text-gray-500 text-sm mt-6">
           Remember your password?{" "}
           <Link
-            to="/auth/login"
+            to="/login"
             className="text-blue-600 font-medium hover:underline"
           >
             Login

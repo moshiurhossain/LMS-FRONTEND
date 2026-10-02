@@ -1,5 +1,3 @@
-
-
 import{ useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FiMail, FiLock } from "react-icons/fi";
@@ -39,13 +37,15 @@ const Login = () => {
       role:userRole,
      }
    })
-   }else{
-    navigate('/',{
+   }else if(userRole == 'user'){
+    navigate('/auth',{
       state:{
       user:userData,
       role:userRole,
       }
     })
+   }else{
+    navigate('/signup')
    }
   } catch (error){
     console.log('this is error',error)
@@ -99,7 +99,7 @@ const Login = () => {
               </label>
 
               <Link
-               to='/auth/forgotpassword'
+               to='/forgotpassword'
               className="text-sm text-indigo-600 hover:text-indigo-700">
                 Forgot password?
               </Link>
@@ -118,7 +118,7 @@ const Login = () => {
           </div>
 
           {/* Remember Me */}
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <input
               type="checkbox"
               className="w-4 h-4 accent-indigo-600"
@@ -127,7 +127,7 @@ const Login = () => {
             <span className="text-sm text-gray-600">
               Remember me
             </span>
-          </div>
+          </div> */}
 
           {/* Login Button */}
           <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
@@ -165,7 +165,7 @@ const Login = () => {
         {/* Sign Up */}
         <p className="text-center text-sm text-gray-500 mt-7">
           Don't have an account?{" "}
-          <Link to='/auth' className="text-indigo-600 font-semibold hover:text-indigo-700">
+          <Link to='/signup' className="text-indigo-600 font-semibold hover:text-indigo-700">
             Sign up
           </Link>
         </p>

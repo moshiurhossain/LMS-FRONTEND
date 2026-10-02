@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard'
 import VerificationOTP from './pages/VerificationOTP'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
+import UserDashboard from './pages/UserDashboard'
 function App() {
 
 
@@ -22,17 +23,18 @@ function App() {
       {/* ////layoutone//// */}
       <Route path ='/' element={<Layoutone/>}>
         <Route index element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>} />
+        <Route path='/verifyotp' element ={<VerificationOTP/>}/>
+        <Route path='/forgotpassword' element ={<ForgotPassword/>}/>
+        <Route path='/resetpassword' element ={<ResetPassword/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////layoutone//// */}
 
       {/* ////Authlayout//// */}
       <Route path='/auth' element={<Authlayout/>}>
-        <Route index element={<Signup/>} />
-        <Route path='/auth/login' element={<Login/>} />
-        <Route path='/auth/verifyotp' element ={<VerificationOTP/>}/>
-        <Route path='/auth/forgotpassword' element ={<ForgotPassword/>}/>
-        <Route path='/auth/resetpassword' element ={<ResetPassword/>}/>
+        <Route index element={<UserDashboard/>} />
         <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Authlayout//// */}

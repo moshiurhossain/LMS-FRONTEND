@@ -165,11 +165,11 @@ const Signup = () => {
         <p className="text-center text-sm text-gray-500 mt-7">
           Already have an account?{" "}
           <Link
-            to='/auth/login'
+            to='/login'
             type="button"
             className="text-indigo-600 font-semibold hover:text-indigo-700"
           >
-            Sign in
+            login
           </Link>
         </p>
 
