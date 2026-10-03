@@ -36,12 +36,7 @@ const CreateCourse = () => {
             }).unwrap()
 
             console.log(res)
-            navigate('/admin/createdcourse',navigate('/admin/createdcourse', {
-            state: {
-                user: data?.data,
-                course: res?.data,
-                    },
-            }))
+            navigate('/admin/createdcourse',{state:{courseDetails:res}})
 
         } catch (err) {
             console.log('this error from create-course:', err)
