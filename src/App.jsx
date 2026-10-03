@@ -12,6 +12,7 @@ import VerificationOTP from './pages/VerificationOTP'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import UserDashboard from './pages/UserDashboard'
+import CreateCourse from './pages/CreateCourse'
 function App() {
 
 
@@ -42,6 +43,7 @@ function App() {
       {/* ////Adminlayout */}
       <Route path='/admin' element={<Adminlayout/>}>
        <Route index element={<Dashboard/>}/>
+       <Route path='/admin/createcourse' element={<CreateCourse/>}/>
        <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Adminlayout */}

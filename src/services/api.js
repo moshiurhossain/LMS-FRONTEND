@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // http://localhost:8080/api/v1/auth/login
 export const lmsAuthapi = createApi({
     reducerPath :'lmsAuthapi',
-    baseQuery : fetchBaseQuery({ baseUrl : 'http://localhost:8080/api/v1/auth', credentials: 'include'}),
+    baseQuery : fetchBaseQuery({ baseUrl : 'http://localhost:8080/api/v1/', credentials: 'include'}),
    tagTypes:["User",],
     endpoints :(builder)=>({
              // xxxxxxxx //
@@ -71,6 +71,7 @@ export const lmsAuthapi = createApi({
                     body:data,
                     })
             }),
+            ////////////////////////////////////////////////////////////////////////////////////////
 
 
     })

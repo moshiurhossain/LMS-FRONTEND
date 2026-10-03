@@ -30,9 +30,12 @@ const Adminlayout = () => {
   return (
     <div>
         <Header/>
-        <div className="flex">
+        <div className="flex-col">
+          <div className="flex">
            <AdminNavbar/>
            <Outlet/>
+          </div>
+          
         </div>
     </div>
   )

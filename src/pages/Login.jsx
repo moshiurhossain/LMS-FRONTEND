@@ -1,5 +1,5 @@
 import{ useState } from "react";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+
 import { FiMail, FiLock } from "react-icons/fi";
 
 import { Link, useNavigate } from "react-router";
@@ -117,17 +117,7 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Remember Me */}
-          {/* <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              className="w-4 h-4 accent-indigo-600"
-            />
-
-            <span className="text-sm text-gray-600">
-              Remember me
-            </span>
-          </div> */}
+        
 
           {/* Login Button */}
           <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
@@ -145,23 +135,8 @@ const Login = () => {
           <div className="h-px bg-gray-200 flex-1" />
         </div>
 
-        {/* Social Buttons */}
-        <div className="grid grid-cols-2 gap-4">
-          <button className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-3 hover:bg-gray-50 transition">
-            <FaGoogle className="text-red-500" />
-            <span className="text-sm font-medium text-gray-700">
-              Google
-            </span>
-          </button>
-
-          <button className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-3 hover:bg-gray-50 transition">
-            <FaGithub className="text-gray-900" />
-            <span className="text-sm font-medium text-gray-700">
-              GitHub
-            </span>
-          </button>
-        </div>
-
+ 
+        
         {/* Sign Up */}
         <p className="text-center text-sm text-gray-500 mt-7">
           Don't have an account?{" "}
