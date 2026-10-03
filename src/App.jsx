@@ -13,6 +13,8 @@ import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import UserDashboard from './pages/UserDashboard'
 import CreateCourse from './pages/CreateCourse'
+import CreatedCourse from './pages/CreatedCourse'
+
 function App() {
 
 
@@ -44,6 +46,7 @@ function App() {
       <Route path='/admin' element={<Adminlayout/>}>
        <Route index element={<Dashboard/>}/>
        <Route path='/admin/createcourse' element={<CreateCourse/>}/>
+       <Route path='/admin/createdcourse' element ={<CreatedCourse/>}/>
        <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Adminlayout */}
