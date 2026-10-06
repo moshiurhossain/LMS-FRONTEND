@@ -1,14 +1,17 @@
-import { useLocation } from "react-router"
-import { useGetCourseApiQuery } from "../services/api"
+import { useLocation, useNavigate } from "react-router"
+import { useCreateClassApiMutation, useGetCourseApiQuery } from "../services/api"
 import { useState } from "react"
 
 const CreatedCourse = () => {
+    const navigate = useNavigate()
      const [formData,setFormData] = useState({
         name :'',
         videoUrl :'',
         courseId :'',
         createdBy :'',
     })
+
+    const [createClassApi] =useCreateClassApiMutation()
 
     // ///get course start///// //
     // use location
@@ -49,11 +52,26 @@ const CreatedCourse = () => {
     ///////// get course ends ////////
     // start add class //
 
-   
+
     
 
-    const handleAddClass = (e)=>{
+    const handleAddClass = async(e)=>{
         e.preventDefault()
+        try{
+        const res = await createClassApi({...formData,
+            courseId:course?._id,
+            createdBy:course?.createdBy,
+        }).unwrap()
+        console.log(res)
+        navigate('/admin/createdclass',{
+            state:{
+                classDetails:res,
+            }
+        })
+        }catch(err){
+            console.log(err)
+        }
+    
     }
     // end add class //
 
@@ -69,7 +87,7 @@ const CreatedCourse = () => {
             </h1>
             </div>
              <div>
-                <button className="p-2 bg-[#21426d] mb-6 rounded-xl text-white font-bold ">Visit Course</button>
+                <button className="cursor-pointer hover:bg-[#1b3b66] p-2 bg-[#21426d] mb-6 rounded-xl text-white font-bold ">Visit Course</button>
              </div>
            </div>
            
@@ -95,34 +113,46 @@ const CreatedCourse = () => {
                     {course?.createdBy}
                 </p>
 
+            
+
             </div>
-            <div className=" bg-[#a6cfc9] flex flex-col mt-2 rounded-2xl justify-center items-center">
+                <div className="flex">
+                    <button className="p-2 m-2 bg-[#dd1b1b] text-white font-bold rounded-xl">Delete</button>
+                    <button className="p-2 m-2 bg-[#dd1b1b] text-white font-bold rounded-xl">Edit</button>
+                    
+                </div>
+
+          
+        </div>
+            {/* right-side-display */}
+        <div className="flex flex-1 flex-col justify-center items-center bg-[#853b3b]">
+            <h2 className="font-bold text-xl text-[#9e95b4]">Create Class</h2>
+
+       {/* create class form */}
+                     <div className="w-[60%] bg-[#a6cfc9] flex flex-col mt-2 rounded-2xl justify-center items-center">
                 <h2 className=" font-bold text-2xl text-white mt-1">Add Class</h2>
-                <div className="">
+                <div className="w-[70%]">
                 <input 
                 onChange={(e)=>setFormData({...formData,name:e.target.value})}
                 type="text" placeholder="Class Name" 
-                className="bg-white mt-2" />
+                className="bg-white mt-2 w-full " />
                 </div>
-                <div>
+                <div className="w-[70%]">
                 <input 
                 onChange={(e)=>setFormData({...formData,videoUrl:e.target.value})}
                 type="text" placeholder="Video URL" 
-                className="bg-white mt-2"/>
+                className="bg-white mt-2 w-full"/>
                 </div>
+                
 
                <div>
                 <button
                  onClick={handleAddClass}
-                className="p-2 mt-2 bg-[#21426d] mb-6 rounded-xl text-white font-bold ">Create Class</button>
+                className="cursor-pointer hover:bg-[#1b3b66] p-2 mt-2 bg-[#21426d] mb-6 rounded-xl text-white font-bold ">Create Class</button>
              </div>
                
             </div>
-          
-        </div>
-            {/* right-side-display */}
-        <div className="flex flex-1 justify-center items-center bg-[#853b3b]">
-         Right side display   
+            {/* create class form ends*/}
         </div>    
         </div>
         </>

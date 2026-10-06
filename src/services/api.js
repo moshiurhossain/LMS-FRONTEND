@@ -93,6 +93,16 @@ export const lmsAuthapi = createApi({
                }),
                }),
             ////////////////////////////////////////////COURSE-APIS- ENDS////////////////////////////////////////////
+            ////////////////////////////////////////////CLass-APIS- STARTS////////////////////////////////////////////
+            ///create class api
+            createClassApi:builder.mutation({
+               query:(data)=>({
+                    url:'/class/createclass',
+                    method: "POST",
+                    body:data,
+               }),
+            }),
+            ////////////////////////////////////////////CLass-APIS- ENDS////////////////////////////////////////////
 
 
     })
@@ -109,4 +119,5 @@ export const {
        useResetPasswordApiMutation,
        useCreateCourseApiMutation,
        useGetCourseApiQuery,
+       useCreateClassApiMutation,
                } = lmsAuthapi
