@@ -37,6 +37,7 @@ const CreatedClass = () => {
 
       return `https://www.youtube.com/embed/${videoId}`;
     } catch (error) {
+        console.log(error)
       return "";
     }
   };

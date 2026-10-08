@@ -92,6 +92,14 @@ export const lmsAuthapi = createApi({
                     }
                }),
                }),
+              /// get all course by user ID
+             getCoursesByCreatorApi: builder.query({  
+               query: () => ({
+               url: "/course/getcoursebycreator",
+               method: "GET",
+               }),
+               providesTags: ["Course"],
+               }),
             ////////////////////////////////////////////COURSE-APIS- ENDS////////////////////////////////////////////
             ////////////////////////////////////////////CLass-APIS- STARTS////////////////////////////////////////////
             ///create class api
@@ -120,4 +128,5 @@ export const {
        useCreateCourseApiMutation,
        useGetCourseApiQuery,
        useCreateClassApiMutation,
+       useGetCoursesByCreatorApiQuery,
                } = lmsAuthapi
