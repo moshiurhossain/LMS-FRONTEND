@@ -85,7 +85,7 @@ export const lmsAuthapi = createApi({
             ///GET Course API/////////////////
                getCourseApi: builder.query({
                query: (courseId) => ({
-                    url: '/course/getcourse',
+                    url: `/course/getcourse?courseId=${courseId}`,
                     method: 'GET',
                     params: {
                          courseId: courseId

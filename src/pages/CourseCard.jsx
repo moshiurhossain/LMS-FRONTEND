@@ -3,7 +3,7 @@ const CourseCard = ({ course }) => {
         <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
             {/* Course Image */}
-            <div className="relative h-48 overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+            <div className="relative h-48 overflow-hidden bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500">
                 <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-5xl font-bold text-white/90">
                         {course.name?.charAt(0).toUpperCase()}
@@ -23,7 +23,7 @@ const CourseCard = ({ course }) => {
                     {course.name}
                 </h2>
 
-                <p className="mb-5 line-clamp-2 min-h-[48px] text-sm leading-6 text-gray-500">
+                <p className="mb-5 line-clamp-2 min-h-12 text-sm leading-6 text-gray-500">
                     {course.description}
                 </p>
 

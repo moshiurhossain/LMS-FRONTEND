@@ -16,6 +16,7 @@ import CreateCourse from './pages/CreateCourse'
 import CreatedCourse from './pages/CreatedCourse'
 import CreatedClass from './pages/CreatedClass'
 import CreatedCourses from './pages/CreatedCourses'
+import CoursePage from './pages/CoursePage'
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
        <Route path='/admin/createdcourse' element ={<CreatedCourse/>}/>
        <Route path='/admin/createdclass' element ={<CreatedClass/>}/>
        <Route path='/admin/mycreatedcourse' element={<CreatedCourses/>}/>
+       <Route path='/admin/course/:courseId' element={<CoursePage/>}/>
        
        <Route path='*' element={<Notfound/>}/>
       </Route>
