@@ -67,10 +67,10 @@ const CoursePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-8 lg:px-10">
+    <div className="min-h-screen cursor-pointer bg-slate-50 px-4 py-8 sm:px-8 lg:px-10">
       {/* Back Button */}
       <button
-        onClick={() => navigate("/admin/createdcourse")}
+        onClick={() => navigate("/admin/mycreatedcourse")}
         className="mb-6 flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-indigo-600"
       >
         <FiArrowLeft size={19} />
@@ -112,6 +112,23 @@ const CoursePage = () => {
                   : "Date unavailable"}
               </span>
             </div>
+            {/* add class button */}
+            <div className=" flex items-center ml-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3" >
+              <button className="text-sm font-medium cursor-pointer"
+                onClick={() =>
+                navigate("/admin/createdcourse", {
+                  state: {
+                    courseDetails: {
+                      data: course,
+                    },
+                  },
+                })
+              }
+              >
+                Add Class
+              </button>
+            </div>
+            {/* add class button */}
           </div>
         </div>
 
@@ -167,7 +184,7 @@ const CoursePage = () => {
         </div>
 
         {/* Classes Section */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2 sm:p-8">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2 sm:p-8 ">
           <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
             <div>
               <h2 className="text-xl font-bold text-slate-900">
@@ -199,7 +216,7 @@ const CoursePage = () => {
               </p>
             </div>
           ) : (
-            <div className="mt-6 space-y-4">
+            <div className="mt-6 space-y-4 max-h-52 overflow-y-scroll">
               {classes.map((classItem, index) => (
                 <div
                   key={classItem._id || index}

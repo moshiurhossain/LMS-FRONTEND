@@ -12,7 +12,7 @@ export const lmsAuthapi = createApi({
                    url :'/auth/getuser',
                    method:'GET',
                  }),
-                 providesTags:['User','Course'],
+                 providesTags:['User','Course','Class'],
             }),
             // xxxxxxxx //
             /////Signup/////
@@ -91,6 +91,7 @@ export const lmsAuthapi = createApi({
                          courseId: courseId
                     }
                }),
+               invalidatesTags: ['Course'],
                }),
               /// get all course by user ID
              getCoursesByCreatorApi: builder.query({  
@@ -100,6 +101,15 @@ export const lmsAuthapi = createApi({
                }),
                providesTags: ["Course"],
                }),
+              /// delete course
+               deleteCourseApi: builder.mutation({
+                    query: (courseId) => ({
+                    url: `/course/deletecourse/${courseId}`,
+                    method: "DELETE",
+                    }),
+                     providesTags: ["Course"],
+                    }),
+
             ////////////////////////////////////////////COURSE-APIS- ENDS////////////////////////////////////////////
             ////////////////////////////////////////////CLass-APIS- STARTS////////////////////////////////////////////
             ///create class api
@@ -109,6 +119,7 @@ export const lmsAuthapi = createApi({
                     method: "POST",
                     body:data,
                }),
+               invalidatesTags: ['Class'],
             }),
             ////////////////////////////////////////////CLass-APIS- ENDS////////////////////////////////////////////
 
@@ -129,4 +140,5 @@ export const {
        useGetCourseApiQuery,
        useCreateClassApiMutation,
        useGetCoursesByCreatorApiQuery,
+       useDeleteCourseApiMutation,
                } = lmsAuthapi
