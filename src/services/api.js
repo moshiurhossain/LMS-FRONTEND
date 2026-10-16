@@ -121,6 +121,18 @@ export const lmsAuthapi = createApi({
                }),
                invalidatesTags: ['Class'],
             }),
+           // Delete class
+           deleteClassApi: builder.mutation({
+  query: (classId) => ({
+    url: `/class/deleteclass/${classId}`,
+    method: "DELETE",
+  }),
+
+providesTags: (result, error, courseId) => [
+  { type: "Course", id: courseId },
+  "Course",
+],
+}),
             ////////////////////////////////////////////CLass-APIS- ENDS////////////////////////////////////////////
 
 
@@ -141,4 +153,5 @@ export const {
        useCreateClassApiMutation,
        useGetCoursesByCreatorApiQuery,
        useDeleteCourseApiMutation,
+       useDeleteClassApiMutation,
                } = lmsAuthapi

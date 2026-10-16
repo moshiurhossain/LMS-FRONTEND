@@ -1,13 +1,12 @@
 
 import { useParams, useNavigate } from "react-router";
-import { useGetCourseApiQuery } from "../services/api";
+import { useGetCourseApiQuery,useDeleteClassApiMutation } from "../services/api";
 import {
   FiArrowLeft,
   FiBookOpen,
   FiPlayCircle,
   FiLayers,
   FiCalendar,
-  FiExternalLink,
   FiAlertCircle,
 } from "react-icons/fi";
 import { useDeleteCourseApiMutation } from "../services/api";
@@ -15,6 +14,25 @@ import { useDeleteCourseApiMutation } from "../services/api";
 const CoursePage = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
+  // delete class api
+  const [deleteClassApi, { isLoading: isDeletingClass }] =
+  useDeleteClassApiMutation();
+  // delete class function
+  const handleDeleteClass = async (classId) => {
+  if (!window.confirm("Are you sure you want to delete this class?")) {
+    return;
+  }
+
+  try {
+    await deleteClassApi(classId).unwrap();
+
+    alert("Class deleted successfully");
+  } catch (error) {
+    console.error("Delete class failed:", error);
+
+    alert(error?.data?.message || "Failed to delete class");
+  }
+};
 
   const {
     data,
@@ -25,6 +43,8 @@ const CoursePage = () => {
     skip: !courseId,
   });
   const [deleteCourseApi] = useDeleteCourseApiMutation();
+
+  // handledelete course function
   const handleDeleteCourse = async () => {
   if (!window.confirm("Delete this course and all its classes?")) {
     return;
@@ -288,14 +308,24 @@ const CoursePage = () => {
                       className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
                     >
                       <FiPlayCircle size={17} />
-                      Watch Class
-                      <FiExternalLink size={15} />
+                      Watch 
+                    
                     </a>
                   ) : (
                     <span className="shrink-0 rounded-xl bg-slate-100 px-4 py-3 text-center text-sm font-medium text-slate-400">
                       No video available
                     </span>
                   )}
+                  {/* delete */}
+                  <div className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
+                    <button className="text-sm font-semibold text-white cursor-pointer"
+                     onClick={() => handleDeleteClass(classItem._id)}
+                     disabled={isDeletingClass}
+                    >
+                     Delete
+                    </button>
+                  </div>
+                   {/* delete */}
                 </div>
               ))}
             </div>

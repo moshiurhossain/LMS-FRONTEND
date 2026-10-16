@@ -9,9 +9,6 @@ import {
   FiBookOpen,
   FiVideo,
   FiPlus,
-  FiEdit3,
-  FiTrash2,
-  FiExternalLink,
   FiUser,
   FiHash,
   FiFileText,
@@ -260,29 +257,11 @@ const CreatedCourse = () => {
 
               {/* Course Actions */}
               <div className="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-6 sm:flex-row">
-                <button
-                  type="button"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white shadow-md shadow-indigo-100 transition hover:bg-indigo-700"
-                >
-                  <FiExternalLink size={18} />
-                  Visit Course
-                </button>
+             
 
-                <button
-                  type="button"
-                  className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 font-semibold text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
-                >
-                  <FiEdit3 size={17} />
-                  Edit
-                </button>
+              
 
-                <button
-                  type="button"
-                  className="flex items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50 px-5 py-3 font-semibold text-red-600 transition hover:bg-red-100"
-                >
-                  <FiTrash2 size={17} />
-                  Delete
-                </button>
+                
               </div>
             </div>
           </section>

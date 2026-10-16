@@ -1,8 +1,9 @@
 
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const CreatedClass = () => {
   const location = useLocation();
+  const navigate = useNavigate()
 
   const classDetails = location.state?.classDetails;
 
@@ -517,7 +518,10 @@ const CreatedClass = () => {
               Back
             </button>
 
-            <button className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-200 transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow-indigo-300">
+            <button
+              onClick={() => navigate(`/admin/course/${courseId}`)}
+               disabled={!courseId}
+            className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-200 transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow-indigo-300">
               View Course
               <span className="ml-2">→</span>
             </button>
