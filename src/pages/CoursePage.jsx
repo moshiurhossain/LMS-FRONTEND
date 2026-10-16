@@ -10,6 +10,7 @@ import {
   FiExternalLink,
   FiAlertCircle,
 } from "react-icons/fi";
+import { useDeleteCourseApiMutation } from "../services/api";
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -23,6 +24,26 @@ const CoursePage = () => {
   } = useGetCourseApiQuery(courseId, {
     skip: !courseId,
   });
+  const [deleteCourseApi] = useDeleteCourseApiMutation();
+  const handleDeleteCourse = async () => {
+  if (!window.confirm("Delete this course and all its classes?")) {
+    return;
+  }
+
+  try {
+    await deleteCourseApi(course._id).unwrap();
+
+    alert("Course and classes deleted successfully");
+
+    navigate("/admin/createdcourse");
+  } catch (error) {
+    console.error("Delete course failed:", error);
+
+    alert(
+      error?.data?.message || "Failed to delete course"
+    );
+  }
+};
 
   const course = data?.data;
   const classes = course?.classes || [];
@@ -129,6 +150,14 @@ const CoursePage = () => {
               </button>
             </div>
             {/* add class button */}
+            {/* delete course  */}
+            <div className=" flex items-center ml-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3">
+             <button className="text-sm font-medium cursor-pointer"
+             onClick={handleDeleteCourse}
+           
+             >Delete Course</button>
+            </div>
+            {/* delete course  */}
           </div>
         </div>
 
