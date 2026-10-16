@@ -8,6 +8,8 @@ import {
   FiLayers,
   FiCalendar,
   FiAlertCircle,
+  FiEdit,
+  
 } from "react-icons/fi";
 import { useDeleteCourseApiMutation } from "../services/api";
 
@@ -326,6 +328,22 @@ const CoursePage = () => {
                     </button>
                   </div>
                    {/* delete */}
+                   {/* Edit */}
+                     <div className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
+                    <button className="text-sm font-semibold flex items-center gap-0.5 text-white cursor-pointer"
+                     onClick={() =>
+                      navigate(`/admin/editclass/${classItem._id}`, {
+                        state: {
+                          classDetails: classItem,
+                          courseId: course._id,
+                        },
+                      })
+                    }
+                    >
+                     <FiEdit /> Edit
+                    </button>
+                    </div>
+                   {/* Edit */}
                 </div>
               ))}
             </div>

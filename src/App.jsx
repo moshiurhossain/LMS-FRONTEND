@@ -17,6 +17,7 @@ import CreatedCourse from './pages/CreatedCourse'
 import CreatedClass from './pages/CreatedClass'
 import CreatedCourses from './pages/CreatedCourses'
 import CoursePage from './pages/CoursePage'
+import EditClass from './pages/EditClass'
 
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
        <Route path='/admin/createdclass' element ={<CreatedClass/>}/>
        <Route path='/admin/mycreatedcourse' element={<CreatedCourses/>}/>
        <Route path='/admin/course/:courseId' element={<CoursePage/>}/>
-       
+       <Route path='/admin/editclass/:classId' element={<EditClass/>}/>
        <Route path='*' element={<Notfound/>}/>
       </Route>
       {/* ////Adminlayout */}

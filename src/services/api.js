@@ -123,16 +123,25 @@ export const lmsAuthapi = createApi({
             }),
            // Delete class
            deleteClassApi: builder.mutation({
-  query: (classId) => ({
-    url: `/class/deleteclass/${classId}`,
-    method: "DELETE",
-  }),
+               query: (classId) => ({
+               url: `/class/deleteclass/${classId}`,
+               method: "DELETE",
+               }),
 
-providesTags: (result, error, courseId) => [
-  { type: "Course", id: courseId },
-  "Course",
-],
-}),
+               providesTags: (result, error, courseId) => [
+               { type: "Course", id: courseId },
+               "Course",
+               ],
+               }),
+               // Edit class
+                 editClassApi: builder.mutation({
+               query: ({ classId, ...data }) => ({
+                    url: `/class/editclass/${classId}`,
+                    method: "PUT",
+                    body: data,
+                    }),
+                    invalidatesTags: ["Course", "Class"],
+                    }),
             ////////////////////////////////////////////CLass-APIS- ENDS////////////////////////////////////////////
 
 
@@ -154,4 +163,5 @@ export const {
        useGetCoursesByCreatorApiQuery,
        useDeleteCourseApiMutation,
        useDeleteClassApiMutation,
+       useEditClassApiMutation,
                } = lmsAuthapi
