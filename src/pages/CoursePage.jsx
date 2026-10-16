@@ -180,6 +180,14 @@ const CoursePage = () => {
              >Delete Course</button>
             </div>
             {/* delete course  */}
+            {/* Edit course  */}
+                        <div className=" flex items-center ml-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3">
+             <button className="text-sm font-medium cursor-pointer"
+              onClick={() => navigate(`/admin/editcourse/${course._id}`)}
+           
+             >Edit Course</button>
+            </div>
+            {/* Edit course  */}
           </div>
         </div>
 
@@ -318,7 +326,7 @@ const CoursePage = () => {
                       No video available
                     </span>
                   )}
-                  {/* delete */}
+                  {/* delete class*/}
                   <div className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
                     <button className="text-sm font-semibold text-white cursor-pointer"
                      onClick={() => handleDeleteClass(classItem._id)}
@@ -327,8 +335,8 @@ const CoursePage = () => {
                      Delete
                     </button>
                   </div>
-                   {/* delete */}
-                   {/* Edit */}
+                   {/* delete class*/}
+                   {/* Edit  class*/}
                      <div className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
                     <button className="text-sm font-semibold flex items-center gap-0.5 text-white cursor-pointer"
                      onClick={() =>
@@ -343,7 +351,7 @@ const CoursePage = () => {
                      <FiEdit /> Edit
                     </button>
                     </div>
-                   {/* Edit */}
+                   {/* Edit class*/}
                 </div>
               ))}
             </div>

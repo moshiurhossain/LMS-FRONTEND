@@ -110,6 +110,21 @@ export const lmsAuthapi = createApi({
                      providesTags: ["Course"],
                     }),
 
+               /// Edit course
+               
+               editCourseApi: builder.mutation({
+               query: ({ courseId, ...updatedData }) => ({
+               url: `/course/editcourse/${courseId}`,
+               method: "PUT",
+               body: updatedData,
+               }),
+               invalidatesTags: (result, error, { courseId }) => [
+               "Course",
+               { type: "Course", id: courseId },
+               ],
+               }),
+ 
+
             ////////////////////////////////////////////COURSE-APIS- ENDS////////////////////////////////////////////
             ////////////////////////////////////////////CLass-APIS- STARTS////////////////////////////////////////////
             ///create class api
@@ -164,4 +179,5 @@ export const {
        useDeleteCourseApiMutation,
        useDeleteClassApiMutation,
        useEditClassApiMutation,
+       useEditCourseApiMutation,
                } = lmsAuthapi
